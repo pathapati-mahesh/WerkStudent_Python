@@ -35,7 +35,7 @@ Make sure the following Python libraries are installed and also Java8 or more is
 ```bash
 pip install -r requirements.txt
 ```
-##Configurations
+## Configurations
 - In this I created a get_config file to Load the Config.ini.
 
 ## Class Methods
