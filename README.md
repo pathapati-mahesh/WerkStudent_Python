@@ -115,8 +115,7 @@ In `Output` folder you will find the created Excel, csv files.
 
 ## Executable File
 
-- I Used `pyinstaller` to create the .exe file of my Python Script`(script.py)`.
-- Verify locale settings (`deu`) for proper date parsing.
+- Yet to Create
 
 ## Author
 
