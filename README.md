@@ -1,4 +1,4 @@
-# DataExtraction Class Documentation
+# DataExtraction Documentation
 
 ## Overview
 
@@ -37,7 +37,7 @@ pip install -r requirements.txt
 ```
 
 ## Class Methods
-
+- **In the Folder you will find the Class Methods in `script.py` file**
 ### Constructor
 
 ```python
