@@ -35,6 +35,8 @@ Make sure the following Python libraries are installed and also Java8 or more is
 ```bash
 pip install -r requirements.txt
 ```
+##Configurations
+- In this I created a get_config file to Load the Config.ini.
 
 ## Class Methods
 - **In the directory you will find the `Data Extraction Class` in `script.py` file**
