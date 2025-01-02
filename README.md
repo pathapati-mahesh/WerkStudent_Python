@@ -16,9 +16,11 @@ The purpose of the `DataExtraction` class is to extract data from PDF invoice fi
 python -m venv name_of_virtual_env
 ```
 - **Activating** Virtual Environment from **cmd**
+- for windows
   ```for Windows
   .\name_env\Scripts\Activate
   ```
+- for Linux/Mac
   ```for linux / mac
   source name_env\bin\activate
   ```
