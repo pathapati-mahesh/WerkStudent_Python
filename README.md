@@ -10,7 +10,19 @@ The purpose of the `DataExtraction` class is to extract data from PDF invoice fi
 - Processes invoice details like total amount and invoice date.
 - Output data as Pandas DataFrames.
 - Exports the results into Excel and CSV formats.
-
+## How to Create Virtual Environment and How to Activate it?
+- Creating virutual Environment from **Command Prompt**
+```cmd
+python -m venv name_of_virtual_env
+```
+- **Activating** Virtual Environment from **cmd**
+  ```for Windows
+  .\name_env\Scripts\Activate
+  ```
+  ```for linux / mac
+  source name_env\bin\activate
+  ```
+  
 ## Requirements
 
 Make sure the following Python libraries are installed and also Java8 or more is installed in your System
