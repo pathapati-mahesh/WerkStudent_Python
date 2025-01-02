@@ -8,8 +8,8 @@ The purpose of the `DataExtraction` class is to extract data from PDF invoice fi
 
 - Extracts data from invoice PDFs using `tabula` and `PyPDF2`.
 - Processes invoice details like total amount and invoice date.
-- Outputs data as Pandas DataFrames.
-- Exports results to Excel and CSV formats.
+- Output data as Pandas DataFrames.
+- Exports the results into Excel and CSV formats.
 
 ## Requirements
 
