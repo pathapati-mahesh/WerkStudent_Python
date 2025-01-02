@@ -5,6 +5,7 @@ import os
 import datetime
 import locale
 from PyPDF2 import PdfReader
+# Used locale to set system DateTime to German timezone
 locale.setlocale(locale.LC_TIME, 'deu') 
 
 
