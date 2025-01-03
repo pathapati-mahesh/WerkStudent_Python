@@ -2,18 +2,30 @@
 
 ## Overview
 
-The purpose of the `DataExtraction` class is to extract data from PDF invoice files, transform it into `DataFrame`, and export the output to CSV and Excel files.
+The purpose of the `DataExtraction` class is to extract data from PDF invoice files, transform it into `DataFrame`, and export the output to CSV and Excel files. Additionally, a new `VirtualEnv` class has been introduced to automate the installation of required packages and Java dependencies.
 
 ## Features
 
 - Extracts data from invoice PDFs using `tabula` and `PyPDF2`.
 - Processes invoice details like total amount and invoice date.
 - Output data as Pandas DataFrames.
-- Exports the results into Excel and CSV formats.
+- Exports results into Excel and CSV formats.
+- New feature to automatically install required packages and Java using the `install_req_script.py`.
 
 ## How to Create Virtual Environment and How to Activate it?
 
-- Creating virtual Environment from **Command Prompt**
+- **Automated Virtual Environment Setup:**
+
+  - `install_req_script.py` automatically installs the required dependencies and Java (if missing) to run the script.
+  - Virtual environment creation and dependency installation is handled within the script, removing the need for manual setup.
+
+- **Java Installation:**
+  - If Java is not installed, the script will attempt to install the latest version of Java using `winget`.
+- **Locale Handling:**
+
+  - The script now ensures that the system's locale is set to 'German' to correctly parse dates in the invoices.
+
+- Process for Creating virtual Environment through **Command Prompt**
 
 ```cmd
 python -m venv name_of_virtual_env
@@ -37,34 +49,52 @@ python -m venv name_of_virtual_env
 
 Make sure the following Python libraries are installed and also Java8 or more is installed in your System
 
-- `distro==1.9.0`
-- `et_xmlfile==2.0.0`
-- `numpy==2.2.1`
-- `openpyxl==3.1.5`
-- `pandas==2.2.3`
-- `pip==24.3.1`
-- `PyPDF2==3.0.1`
-- `python-dateutil==2.9.0`
-- `pytz==2024.2`
-- `setuptools==63.2.0`
-- `six==1.17.0`
-- `tabula==1.0.5`
-- `tabula-py==2.10.0`
-- `tabulate==0.9.0`
-- `tzdata==2024.2`
+- `distro`
+- `et_xmlfile`
+- `numpy`
+- `openpyxl`
+- `pandas`
+- `pip`
+- `PyPDF2`
+- `python-dateutil`
+- `pytz`
+- `setuptools`
+- `six`
+- `tabula`
+- `tabula-py`
+- `tabulate`
+- `tzdata`
   You can install above libraries using pip:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Configurations
+- **Note :** You are no longer need to write the commands to install the requirements file`(VirtualEnv)`. Now I integrated the script to automatically install and run the **DATA EXTRACTION** script. You just have to run the `main.py` file to get the Output.
 
-- In this I created a get_config file to Load the Config.ini.
+## Class Methods(VirtualEnv):
 
-## Class Methods
+- **In the directory you will find the `VirtualEnv Class` in `extraction_script\install_req_script.py` file**
 
-- **In the directory you will find the `Data Extraction Class` in `script.py` file**
+### Constructor
+
+```python
+__init__(**kwargs)
+```
+
+- **Parameters:**
+  - `requirements_file`: : The path to the requirements.txt file.
+- **Description:** Initializes the class with requirements_file path which will be useful to install the packages/modules that are used in the `script`.
+
+### Methods
+
+- `install_java():` Install's Java if not already installed.
+- `upgrade_pip():` Upgrades pip to the latest version. If the python environment is <=3.10.3 then the pip version is 22 which is uncompatable for the packages that we are using. So for that reason we are upgrading the pip to version 24.
+- `install_requirements():` After all this method install the required dependencies from requirements.txt file.
+
+## Class Methods(Data Extraction)
+
+- **In the directory you will find the `Data Extraction Class` in `extraction_script\script.py` file**
 
 ### Constructor
 
@@ -123,23 +153,30 @@ __init__(**kwargs)
 ## Usage Example
 
 ```python
+import locale
+locale.setlocale(locale.LC_TIME, 'deu')
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     invoice_file_name1 = "sample_invoice_1.pdf"
     invoice_file_name2 = "sample_invoice_2.pdf"
+
+    from extraction_script.script import DataExtraction
+    from extraction_script.install_req_script import VirtualEnv
+    obj = VirtualEnv(requirements_file="requirements.txt")
+    check = obj.install_requirements()
     extract_data = DataExtraction(invoice_pdf1=invoice_file_name1, invoice_pdf2=invoice_file_name2)
     extract_data.get_data()
+
 ```
 
 ## Outputs
 
 In `Output` folder you will find the created Excel, csv files.
 
-- **Excel File:** `invoice_excel.xlsx`
+- **Excel File:** `output_invoice.xlsx`
   - Sheet 1: Raw data from both PDFs.
   - Sheet 2: Pivot table summarizing the data.
-- **CSV File:** `Total.csv` (semicolon-separated).
+- **CSV File:** `output_invoice.csv` (semicolon-separated).
 
 ## Executable File
 
@@ -150,8 +187,10 @@ In `Output` folder you will find the created Excel, csv files.
 ### Command to Create the .exe file
 
 ```
-pyinstaller --onefile --add-data "sample_invoice_1.pdf;." --add-data "sample_invoice_2.pdf;." script.py
+pyinstaller --onefile --add-data "extraction_script;extraction_script" --add-data "requirements.txt;." --add-data "sample_invoice_1.pdf;." --add-data "sample_invoice_2.pdf;." main.py
 ```
+
+- Facing some package related issues while creating the .exe file resolved all those package related issues. .exe is not executing as expected the code is breaking some where it is not showing anything in the logs also tried debugging the code.
 
 ## Author
 
