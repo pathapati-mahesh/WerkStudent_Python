@@ -181,7 +181,7 @@ In `Output` folder you will find the created Excel, csv files.
 ## Executable File
 
 - I created and tried executing it is giving me Java path error for tabula module. I have the Java installed in my system. As of now trying to resolve the issue im facing related to tabula-java
-- I Used `pyinstaller` to create the .exe file of my Python Script`(script.py)`.
+- I Used `pyinstaller` to create the .exe file of my Python Script`(main.py)`.
 - Verify locale settings (`deu`) for proper date parsing.
 
 ### Command to Create the .exe file
